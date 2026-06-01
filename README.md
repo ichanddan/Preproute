@@ -1,87 +1,30 @@
-# Welcome to React Router!
+# Preproute
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A full-stack React application built with [React Router v7](https://reactrouter.com/) (framework mode) and server-side rendering.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## Tech Stack
 
-## Features
+- **[React Router v7](https://reactrouter.com/)** — framework mode with SSR, loaders/actions, and typed routes
+- **[React 19](https://react.dev/)**
+- **[Tailwind CSS v4](https://tailwindcss.com/)** — CSS-first configuration (no `tailwind.config.js`)
+- **[shadcn/ui](https://ui.shadcn.com/)** — accessible component primitives (Radix UI, `radix-nova` style)
+- **[Lucide](https://lucide.dev/)** icons
+- **[Zod](https://zod.dev/)** for schema validation
+- **[Bun](https://bun.sh/)** as the package manager and runtime
+- **TypeScript** + **[Vite](https://vite.dev/)**
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
-
-Install the dependencies:
-
-```bash
-npm install
-```
-
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
+## Project Structure
 
 ```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+app/
+├── components/ui/   # shadcn/ui component primitives
+├── hooks/           # Reusable React hooks
+├── lib/utils.ts     # `cn()` class-name helper (clsx + tailwind-merge)
+├── routes/          # Route modules
+├── app.css          # Tailwind v4 + theme configuration
+├── root.tsx         # Root layout and error boundary
+└── routes.ts        # Route manifest (routes are declared explicitly here)
+utils/               # Shared utilities outside the app/ alias
 ```
 
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+`~/*` maps to `app/*` — prefer `~/components/...`, `~/lib/utils`, `~/hooks/...` over relative imports.
