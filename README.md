@@ -19,12 +19,11 @@ A full-stack React application built with [React Router v7](https://reactrouter.
 app/
 ├── components/ui/   # shadcn/ui component primitives
 ├── hooks/           # Reusable React hooks
-├── lib/utils.ts     # `cn()` class-name helper (clsx + tailwind-merge)
+├── lib/             # `utils.ts` (`cn()` helper) and `fetch.ts` (HTTP client)
 ├── routes/          # Route modules
 ├── app.css          # Tailwind v4 + theme configuration
 ├── root.tsx         # Root layout and error boundary
 └── routes.ts        # Route manifest (routes are declared explicitly here)
-utils/               # Shared utilities outside the app/ alias
 ```
 
 `~/*` maps to `app/*` — prefer `~/components/...`, `~/lib/utils`, `~/hooks/...` over relative imports.
