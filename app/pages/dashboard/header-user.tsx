@@ -5,6 +5,7 @@ import {
   ChevronDownIcon,
   LogOutIcon,
 } from "lucide-react"
+import { useNavigate } from "react-router"
 
 import {
   AlertDialog,
@@ -30,12 +31,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
-
-const user = {
-  name: "Alex Wando",
-  role: "Admin",
-  avatar: "https://github.com/shadcn.png",
-}
+import { clearSession, getSession, toCapitalized } from "~/services"
 
 function initials(name: string) {
   return name
@@ -47,12 +43,20 @@ function initials(name: string) {
 }
 
 export function HeaderUser() {
+  const navigate = useNavigate()
   const [logoutOpen, setLogoutOpen] = useState(false)
 
+  const sessionUser = getSession()?.user
+  const user = {
+    name: sessionUser?.name ?? "User",
+    role: toCapitalized(sessionUser?.role) || "Member",
+    avatar: "https://github.com/shadcn.png",
+  }
+
   function handleLogout() {
-    // TODO: wire up real sign-out
-    console.log("logout")
+    clearSession()
     setLogoutOpen(false)
+    navigate("/", { replace: true })
   }
 
   return (

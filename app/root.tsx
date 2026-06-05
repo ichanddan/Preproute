@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 
+import { Toaster } from "~/components/ui/sonner";
 import { TooltipProvider } from "~/components/ui/tooltip";
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -35,6 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <Toaster position="top-right" richColors />
         <ScrollRestoration />
         <Scripts />
       </body>

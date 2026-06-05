@@ -2,21 +2,31 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 import { Form, FormInput } from "~/components/forms";
 import { Button } from "~/components/ui/button";
+import { Spinner } from "~/components/ui/spinner";
+import { API, setSession } from "~/services";
 
 import { loginSchema, type LoginValues } from "./zod/login-schema";
 
 export function LoginForm() {
+  const navigate = useNavigate();
   const form = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: { userId: "", password: "" },
   });
 
-  function onSubmit(values: LoginValues) {
-    console.log("login", values);
+  async function onSubmit(values: LoginValues) {
+    const result = await API.Login(values, "Logged in successfully", "Signing in...");
+    if (!result) return;
+
+    setSession({ token: result.data.token, user: result.data.user });
+    navigate("/dashboard", { replace: true });
   }
+
+  const { isSubmitting } = form.formState;
 
   return (
     <Form form={form} onSubmit={onSubmit} className="gap-5">
@@ -47,9 +57,10 @@ export function LoginForm() {
 
       <Button
         type="submit"
+        disabled={isSubmitting}
         className="h-11 rounded-xl bg-[#6c7cf0] text-base font-medium text-white hover:bg-[#5b6be0]"
       >
-        Login
+        {isSubmitting ? <Spinner /> : "Login"}
       </Button>
     </Form>
   );
