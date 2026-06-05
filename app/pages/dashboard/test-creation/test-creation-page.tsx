@@ -11,7 +11,7 @@ import { TestCreationForm } from "./test-creation-form";
 
 export function TestCreationPage() {
   return (
-    <div className="flex flex-1 flex-col gap-8 px-6 pb-10 pt-2">
+    <div className="flex flex-1 flex-col gap-8 p-6">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
