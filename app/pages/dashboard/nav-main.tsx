@@ -36,14 +36,19 @@ export function NavMain({
 
   return (
     <SidebarGroup>
-      <SidebarMenu>
+      <SidebarMenu className="gap-2">
         {items.map((item) => {
           const isActive = item.url !== "#" && pathname === item.url
 
           return (
             <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip={item.title} isActive={isActive}>
+                <SidebarMenuButton
+                  asChild
+                  tooltip={item.title}
+                  isActive={isActive}
+                  className="h-11 gap-3 rounded-lg data-active:bg-primary/5 data-active:font-semibold data-active:text-primary data-active:shadow-[inset_3px_0_0_0_var(--primary)] data-active:hover:bg-primary/5 data-active:hover:text-primary"
+                >
                   <Link to={item.url}>
                     {item.icon}
                     <span>{item.title}</span>
