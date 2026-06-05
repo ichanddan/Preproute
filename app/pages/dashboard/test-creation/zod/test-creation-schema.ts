@@ -7,7 +7,7 @@ export const testCreationSchema = z.object({
   duration: z.coerce.number().min(1, "Duration is required"),
   nameOfTest: z.string().min(1, "Name of test is required"),
   subTopic: z.string().min(1, "Sub topic is required"),
-  difficulty: z.enum(["easy", "medium", "difficult"]),
+  difficulty: z.enum(["easy", "medium", "hard"]),
   wrongAnswer: z.coerce.number(),
   unattempted: z.coerce.number(),
   correctAnswer: z.coerce.number(),

@@ -1,4 +1,4 @@
-import { DashboardOverview } from "~/pages/dashboard";
+import { TestListPage } from "~/pages/dashboard/test-list";
 import type { Route } from "./+types/overview";
 
 export function meta({}: Route.MetaArgs) {
@@ -6,11 +6,11 @@ export function meta({}: Route.MetaArgs) {
     { title: "Dashboard · Preproute" },
     {
       name: "description",
-      content: "Your Preproute workspace overview and activity.",
+      content: "Manage, preview, and publish your tests.",
     },
   ];
 }
 
 export default function DashboardOverviewRoute() {
-  return <DashboardOverview />;
+  return <TestListPage />;
 }
