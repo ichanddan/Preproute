@@ -100,12 +100,12 @@ export function TestCreationForm() {
           form.setValue("testType", value as TestCreationValues["testType"])
         }
       >
-        <TabsList className="h-auto gap-1 rounded-xl border border-[#e6eefc] bg-[#f6f9ff] p-1.5">
+        <TabsList className="w-fit gap-1 rounded-xl border border-primary/15 bg-primary/[0.07] p-1 group-data-horizontal/tabs:h-auto">
           {TABS.map((tab) => (
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="rounded-lg px-5 py-2 data-active:text-[#1b5def]"
+              className="rounded-lg px-5 py-1.5 text-sm font-medium text-muted-foreground transition-colors data-active:bg-background data-active:font-semibold data-active:text-primary data-active:shadow-sm"
             >
               {tab.label}
             </TabsTrigger>
