@@ -5,3 +5,8 @@
 # React Router
 /.react-router/
 /build/
+
+# Local task reference material (not part of the deliverable)
+/Frontend-Developer-Task-Preproute.md
+/image.png
+/image copy*.png
