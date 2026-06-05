@@ -34,7 +34,7 @@ import {
 const user = {
   name: "Alex Wando",
   role: "Admin",
-  avatar: "/avatars/shadcn.jpg",
+  avatar: "https://github.com/shadcn.png",
 }
 
 function initials(name: string) {
