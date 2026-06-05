@@ -186,12 +186,13 @@ export function TestCreationForm() {
         <Button
           type="button"
           variant="outline"
-          className="min-w-32 text-[#1b5def]"
+          size="lg"
+          className="min-w-32 text-primary"
           onClick={() => form.reset()}
         >
           Cancel
         </Button>
-        <Button type="submit" className="min-w-32 bg-[#6c7cf0] hover:bg-[#5b6be0]">
+        <Button type="submit" size="lg" className="min-w-32">
           Next
         </Button>
       </div>
