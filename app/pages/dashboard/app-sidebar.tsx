@@ -39,15 +39,13 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar variant="inset" {...props}>
+    <Sidebar variant="inset" {...props} collapsible="none">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <Link to="/dashboard">
-                <Logo className="h-7 w-auto" />
-              </Link>
-            </SidebarMenuButton>
+            <Link to="/dashboard" className="flex items-center px-2 py-1.5">
+              <Logo className="h-8 w-auto" />
+            </Link>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

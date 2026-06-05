@@ -1,12 +1,21 @@
+import { useState } from "react"
 import {
   BadgeCheckIcon,
   BellIcon,
   ChevronDownIcon,
-  CreditCardIcon,
   LogOutIcon,
-  SparklesIcon,
 } from "lucide-react"
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "~/components/ui/alert-dialog"
 import {
   Avatar,
   AvatarFallback,
@@ -18,7 +27,6 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
@@ -39,6 +47,14 @@ function initials(name: string) {
 }
 
 export function HeaderUser() {
+  const [logoutOpen, setLogoutOpen] = useState(false)
+
+  function handleLogout() {
+    // TODO: wire up real sign-out
+    console.log("logout")
+    setLogoutOpen(false)
+  }
+
   return (
     <div className="flex items-center gap-3">
       <Button
@@ -73,50 +89,49 @@ export function HeaderUser() {
             <ChevronDownIcon className="size-4 text-muted-foreground" />
           </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="min-w-56 rounded-lg" align="end" sideOffset={8}>
-          <DropdownMenuLabel className="p-0 font-normal">
-            <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-              <Avatar className="size-8">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback>{initials(user.name)}</AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs text-muted-foreground">
-                  {user.role}
-                </span>
-              </div>
-            </div>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
+        <DropdownMenuContent
+          className="min-w-64 rounded-xl p-1.5"
+          align="end"
+          sideOffset={8}
+        >
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              <SparklesIcon />
-              Upgrade to Pro
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="gap-2.5 rounded-lg px-3 py-2.5 text-sm [&_svg:not([class*='size-'])]:size-5">
               <BadgeCheckIcon />
               Account
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <CreditCardIcon />
-              Billing
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <BellIcon />
-              Notifications
-            </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
+          <DropdownMenuItem
+            variant="destructive"
+            className="gap-2.5 rounded-lg px-3 py-2.5 text-sm [&_svg:not([class*='size-'])]:size-5"
+            onSelect={(event) => {
+              event.preventDefault()
+              setLogoutOpen(true)
+            }}
+          >
             <LogOutIcon />
             Log out
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <AlertDialog open={logoutOpen} onOpenChange={setLogoutOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Log out of PrepRoute?</AlertDialogTitle>
+            <AlertDialogDescription>
+              You'll be signed out of your account and need to log in again to
+              continue.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction variant="destructive" onClick={handleLogout}>
+              Log out
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }
